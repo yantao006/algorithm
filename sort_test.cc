@@ -96,4 +96,4 @@ int main(int argc, char* argv[]) {
  * selection sort cost:48511
  */
 
-// compile command: gcc -lstdc++ -std=c++11 sort_test.cc -o test -lm
+// compile command: g++ -lstdc++ -std=c++11 sort_test.cc -o test -lm
