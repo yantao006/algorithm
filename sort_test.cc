@@ -22,7 +22,7 @@ void Merge(std::vector<int32_t>& vec, int begin, int mid, int end) {
     std::vector<int32_t> tmp;
     int i = begin;
     int j = mid+1;
-    while (i <= mid && j <= end) {
+    while (i <= mid && j <= end) { // 这种情况下用while循环比用for循环思路要好很多
         if (vec[i] <= vec[j]) {
             tmp.push_back(vec[i++]);
         } else {
@@ -58,7 +58,7 @@ void MergeSort(std::vector<int32_t> vec) {
 }
 
 int Partition(std::vector<int32_t>& vec, int begin, int end) {
-    int pivot = end;
+    int pivot = end; // 每次选区间的最后一个元素作为分区点，有优化空间
     int i = begin;
     for (int j = begin; j < end; j++) {
         if (vec[j] < vec[pivot]) {
