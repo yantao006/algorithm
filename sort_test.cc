@@ -12,6 +12,80 @@ void print(std::vector<int32_t>& vec) {
     std::cout << aaa << std::endl;
 }
 
+void swap(int& a, int& b) {
+    int tmp = a;
+    a = b;
+    b = tmp;
+}
+
+void Merge(std::vector<int32_t>& vec, int begin, int mid, int end) {
+    std::vector<int32_t> tmp;
+    int i = begin;
+    int j = mid+1;
+    while (i <= mid && j <= end) {
+        if (vec[i] <= vec[j]) {
+            tmp.push_back(vec[i++]);
+        } else {
+            tmp.push_back(vec[j++]);
+        }
+    }
+    while (i <= mid) {
+        tmp.push_back(vec[i++]);
+    }
+    while (j <= end) {
+        tmp.push_back(vec[j++]);
+    }
+    for (int k = 0; k < tmp.size(); k++) {
+        vec[begin++] = tmp[k];
+    }
+}
+
+void MergeSortCore(std::vector<int32_t>& vec, int begin, int end) {
+    if (begin >= end) { return; }
+    int mid = begin + (end - begin) / 2;
+    MergeSortCore(vec, begin, mid);
+    MergeSortCore(vec, mid+1, end);
+    Merge(vec, begin, mid, end);
+}
+
+void MergeSort(std::vector<int32_t> vec) {
+    timeval s,e;
+    gettimeofday(&s, NULL);
+    MergeSortCore(vec, 0, vec.size() -1);
+    gettimeofday(&e, NULL);
+    std::cout << "merge sort cost:" << (e.tv_sec - s.tv_sec) * 1000 + (e.tv_usec - s.tv_usec) / 1000 << std::endl;
+    //print(vec);
+}
+
+int Partition(std::vector<int32_t>& vec, int begin, int end) {
+    int pivot = end;
+    int i = begin;
+    for (int j = begin; j < end; j++) {
+        if (vec[j] < vec[pivot]) {
+            swap(vec[j], vec[i]);
+            i++;
+        }
+    }
+    swap(vec[i], vec[pivot]);
+    return i;
+}
+
+void QuickSortCore(std::vector<int32_t>& vec, int begin, int end) {
+    if (begin >= end) { return; }
+    int pivot = Partition(vec, begin, end);
+    QuickSortCore(vec, begin, pivot - 1);
+    QuickSortCore(vec, pivot + 1, end);
+}
+
+void QuickSort(std::vector<int32_t> vec) {
+    timeval s,e;
+    gettimeofday(&s, NULL);
+    QuickSortCore(vec, 0, vec.size() - 1);
+    gettimeofday(&e, NULL);
+    std::cout << "quick sort cost:" << (e.tv_sec - s.tv_sec) * 1000 + (e.tv_usec - s.tv_usec) / 1000 << std::endl;
+}
+
+
 void BubbleSort(std::vector<int32_t> vec) {
     timeval s,e;
     gettimeofday(&s, NULL);
@@ -76,7 +150,9 @@ void SelectionSort(std::vector<int32_t> vec) {
 
 // 测试
 int main(int argc, char* argv[]) {
-    std::vector<int32_t> input = {3, 2, 8, 6, 5, 9};
+    //std::vector<int32_t> input = {3, 2, 8, 10, 6, 5, 9};
+    //std::vector<int32_t> input = {3, 2};
+    std::vector<int32_t> input;
     for (int i = 0; i < 10000; i++) {
         input.push_back(rand()%100000);
     }
@@ -85,15 +161,18 @@ int main(int argc, char* argv[]) {
     BubbleSort(input);
     InsertSort(input);
     SelectionSort(input);
-    //print(input);
+    MergeSort(input);
+    QuickSort(input);
     return 0;
 }
 
 /*
  * vec.size() == 10000
- * bubble sort cost:107499
- * insert sort cost:26993
- * selection sort cost:48511
+ * bubble sort cost:1615
+ * insert sort cost:352
+ * selection sort cost:656
+ * merge sort cost:27
+ * quick sort cost:5
  */
 
 // compile command: g++ -lstdc++ -std=c++11 sort_test.cc -o test -lm
