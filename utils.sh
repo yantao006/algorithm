@@ -10,3 +10,9 @@ for i in $(get_instance_by_service shoubai-gr-tucheng.SUPERPAGE.bj); do ssh -o "
 ### 然后通过 git diff ${commit_id}^! 查看对应改动diff
 git diff ${commit_id}^!
 
+
+# grep 命令
+
+## 或关系
+grep sample_info image-single-list-dict.log | grep -E 'vertical_type:16|vertical_type:11' | wc  -l
+
