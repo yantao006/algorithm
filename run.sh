@@ -1,7 +1,8 @@
 
-
-
-
+# -g 
+g++ -lstdc++ -std=c++11 memory_management.cc -o test -lm
+echo "compile finished, run the binary..."
+./test
 
 # linked_list
 #g++ -lstdc++ -std=c++11 linked_list.cc -o linked_list -lm
@@ -15,7 +16,7 @@
 #echo "compile finished, run the binary..."
 #./test.exe
 
-g++ -lstdc++ -std=c++11  binary_search.cc -o test -lm
-echo "compile finished, run the binary..."
-./test
+#g++ -lstdc++ -std=c++11  binary_search.cc -o test -lm
+#echo "compile finished, run the binary..."
+#./test
 #./test.exe
