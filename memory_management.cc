@@ -3,6 +3,7 @@
 #include <string>
 #include <stdlib.h>
 #include <sys/time.h>
+#include <memory>
 
 void using_reserve() {
     timeval start, end; 
@@ -44,6 +45,16 @@ void memory_leak_1() {
     delete p; // error!! should be delete[] p;
 }
 
+void memory_leak_2() {
+    int32_t* p = new int32_t();
+}
+
+void using_shared_ptr() {
+    std::shared_ptr<int32_t> p = std::make_shared<int32_t>();
+    *p = 2;
+    std::cout << "p value is:" << *p << std::endl;
+}
+
 void stack_address() {
     int32_t a = 0;
     int32_t b = 0;
@@ -80,6 +91,8 @@ int main(int argc, char* argv[]) {
     //using_reserve();
     //no_using_reserve();
     //memory_leak_1();
+    //memory_leak_2();
+    //using_shared_ptr();
     //stack_address();
     //heap_address();
     //memory_overread();
