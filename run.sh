@@ -15,6 +15,7 @@
 #echo "compile finished, run the binary..."
 #./test.exe
 
-g++ -lstdc++  binary_search.cc -o test -lm
+g++ -lstdc++ -std=c++11  binary_search.cc -o test -lm
 echo "compile finished, run the binary..."
-./test.exe
+./test
+#./test.exe
