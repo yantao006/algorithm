@@ -1,4 +1,8 @@
 
+#g++ -lstdc++ -std=c++11 -g file_system.cc -o test -lm
+#echo "compile finished, run the binary..."
+#./test
+
 # -g 
 g++ -lstdc++ -std=c++11 -g memory_management.cc -o test -lm
 echo "compile finished, run the binary..."
