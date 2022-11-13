@@ -153,15 +153,15 @@ int main(int argc, char* argv[]) {
     //std::vector<int32_t> input = {3, 2, 8, 10, 6, 5, 9};
     //std::vector<int32_t> input = {3, 2};
     std::vector<int32_t> input;
-    for (int i = 0; i < 10000; i++) {
-        input.push_back(rand()%100000);
+    for (int i = 0; i < 10; i++) {
+        input.push_back(rand()%10);
     }
-    //print(input);
+    print(input);
 
-    BubbleSort(input);
-    InsertSort(input);
-    SelectionSort(input);
-    MergeSort(input);
+    //BubbleSort(input);
+    //InsertSort(input);
+    //SelectionSort(input);
+    //MergeSort(input);
     QuickSort(input);
     return 0;
 }
