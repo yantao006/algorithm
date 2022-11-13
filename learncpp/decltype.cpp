@@ -8,12 +8,12 @@ int main() {
     auto x = a;
     auto y = &a;
     // 编译期输出
-    //TD<decltype(x)> xType;
-    //TD<decltype(y)> yType;
+    TD<decltype(x)> xType;
+    TD<decltype(y)> yType;
 
     // 运行期输出
-    // 准确，但不够直观
-    std::cout << typeid(x).name() << std::endl;
-    std::cout << typeid(y).name() << std::endl;
+    // 不可靠，且不够直观
+    // std::cout << typeid(x).name() << std::endl;
+    // std::cout << typeid(y).name() << std::endl;
     return 0;
 }
