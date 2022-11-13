@@ -7,7 +7,13 @@ int main() {
     const int a = 42;
     auto x = a;
     auto y = &a;
-    TD<decltype(x)> xType;
-    TD<decltype(y)> yType;
+    // 编译期输出
+    //TD<decltype(x)> xType;
+    //TD<decltype(y)> yType;
+
+    // 运行期输出
+    // 准确，但不够直观
+    std::cout << typeid(x).name() << std::endl;
+    std::cout << typeid(y).name() << std::endl;
     return 0;
 }
